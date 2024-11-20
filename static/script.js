@@ -57,9 +57,20 @@ graph.addEventListener("click", (event) => {
 });
 
 document.querySelectorAll("button").forEach((button) => {
-  if (button.id === "submit") {
+  if (button.id === "submit" || button.id === "k") {
     return;
   }
+  if (button.id === "clear") {
+    button.addEventListener("click", () => {
+      // Clear the graph
+      const outputDiv = document.getElementById("output");
+      outputDiv.innerHTML = "";
+      graph.innerHTML = "";
+      points.length = 0;
+    });
+    return;
+  }
+
   button.addEventListener("click", (event) => {
     // Update current color
     currentColor = event.target.classList[1];
