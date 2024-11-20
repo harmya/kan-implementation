@@ -32,7 +32,6 @@ def process_data(data):
             all_x.append(x)
             all_y.append(y)
     
-    # Determine the scaling factors
     if all_x and all_y:
         min_x, max_x = min(all_x), max(all_x)
         min_y, max_y = min(all_y), max(all_y)
@@ -133,16 +132,13 @@ def plot():
     labels = classify_meshgrid(xx, yy, center_one, center_two, center_three, center_four, num_points, k=5)
     plt.contourf(xx, yy, labels, alpha=0.5, cmap='viridis')
     
-    # Save plot to a BytesIO object
     buf = BytesIO()
     plt.savefig(buf, format="png")
     buf.seek(0)
     img_data = base64.b64encode(buf.getvalue()).decode("utf-8")
     buf.close()
 
-    #also save png to file
     plt.savefig('static/plot.png')
-
     return jsonify({"img_data": img_data})
 
 if __name__ == "__main__":
