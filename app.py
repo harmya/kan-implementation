@@ -114,7 +114,7 @@ def index():
 @app.route("/plot", methods=["POST"])
 def plot():
     points = request.get_json()["points"]
-    k = request.get_json()["k"]
+    k = int(request.get_json()["k"])
     print(k)
 
     center_one, center_two, center_three, center_four, num_points = process_data(points)

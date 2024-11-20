@@ -70,7 +70,7 @@ def plot_knn():
     plt.scatter(center_three[:, 0], center_three[:, 1], c='g', label='Center 3')
     plt.scatter(center_four[:, 0], center_four[:, 1], c='y', label='Center 4')
     
-    labels = classify_meshgrid(xx, yy, center_one, center_two, center_three, center_four, k=5, num_points=num_points)
+    labels = classify_meshgrid(xx, yy, center_one, center_two, center_three, center_four, k=7, num_points=num_points)
     plt.contourf(xx, yy, labels, alpha=0.2, cmap='viridis')
     plt.title('K-NN Classification')
     
