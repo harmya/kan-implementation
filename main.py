@@ -60,31 +60,20 @@ def classify_meshgrid(xx, yy, center_one, center_two, center_three, center_four,
 
     return np.array(output).reshape(xx.shape)
 
-xx, yy = make_meshgrid()
-fig, ax = plt.subplots()
-plt.subplots_adjust(bottom=0.2) 
-
-num_points = 32
-
-def update(event):
-    ax.clear()  
+def plot_knn():
+    num_points = 32
+    xx, yy = make_meshgrid()
     center_one, center_two, center_three, center_four = make_data(num_points)
-    print(center_one.shape, center_two.shape, center_three.shape, center_four.shape)
-  
-    ax.scatter(center_one[:, 0], center_one[:, 1], c='r', label='Center 1')
-    ax.scatter(center_two[:, 0], center_two[:, 1], c='b', label='Center 2')
-    ax.scatter(center_three[:, 0], center_three[:, 1], c='g', label='Center 3')
-    ax.scatter(center_four[:, 0], center_four[:, 1], c='y', label='Center 4')
+    
+    plt.scatter(center_one[:, 0], center_one[:, 1], c='r', label='Center 1')
+    plt.scatter(center_two[:, 0], center_two[:, 1], c='b', label='Center 2')
+    plt.scatter(center_three[:, 0], center_three[:, 1], c='g', label='Center 3')
+    plt.scatter(center_four[:, 0], center_four[:, 1], c='y', label='Center 4')
     
     labels = classify_meshgrid(xx, yy, center_one, center_two, center_three, center_four, k=5, num_points=num_points)
-    ax.contourf(xx, yy, labels, alpha=0.2, cmap='viridis')
-    ax.set_title('K-NN Classification')
-    plt.draw()  # Redraw the figure
+    plt.contourf(xx, yy, labels, alpha=0.2, cmap='viridis')
+    plt.title('K-NN Classification')
+    
+    plt.show()
 
-ax_button = plt.axes([0.4, 0.05, 0.2, 0.075])  # [left, bottom, width, height]
-button = Button(ax_button, 'Refresh')
-
-button.on_clicked(update)
-
-update(None)  
-plt.show()
+plot_knn()

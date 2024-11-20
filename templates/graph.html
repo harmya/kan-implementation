@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graph View</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>K-Nearest Neighbors</h1>
+    <div id="container">
+      <div id="graph"></div>
+      <div id="output"></div>
+    </div>
+    <div id="controls">
+      <div id="buttons">
+        <div id="labels">
+          <h2>Choose the label of data to add</h2>
+          <button class="button red">Red</button>
+          <button class="button green">Green</button>
+          <button class="button blue">Blue</button>
+          <button class="button gold">Yellow</button>
+        </div>
+        <div id="k">
+          <h2>Choose the value of k</h2>
+          <input type="number" id="k-value" value="3" />
+        </div>
+        <div id="reset">
+          <h2>Reset the graph</h2>
+          <button class="button reset">Reset</button>
+        </div>
+        <div id="predict">
+          <h2>Predict</h2>
+          <button id="submit">Predict</button>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
