@@ -1,1 +1,1 @@
-### Implementation of Kolmogorov-Arnold Neural Network
+### Implementation of KNNs
