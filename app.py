@@ -47,7 +47,7 @@ def process_data(data):
         if len(labels[color]) != 0:
             labels[color] = np.array([scale_point(pt) for pt in labels[color]])
         else:
-            labels[color] = np.array([[21, 21]])
+            labels[color] = np.array([[25, 25]])
     
     return labels["red"], labels["blue"], labels["green"], labels["gold"], num_points
 
@@ -113,7 +113,11 @@ def index():
 
 @app.route("/plot", methods=["POST"])
 def plot():
-    center_one, center_two, center_three, center_four, num_points = process_data(request.get_json())
+    points = request.get_json()["points"]
+    k = request.get_json()["k"]
+    print(k)
+
+    center_one, center_two, center_three, center_four, num_points = process_data(points)
     
     plt.figure(figsize=(5, 5))
     plt.xlim(-1, 11)
@@ -129,7 +133,7 @@ def plot():
         plt.scatter(center_four[:, 0], center_four[:, 1], c='y', label='Center 4')
     
     xx, yy = make_meshgrid()
-    labels = classify_meshgrid(xx, yy, center_one, center_two, center_three, center_four, num_points, k=5)
+    labels = classify_meshgrid(xx, yy, center_one, center_two, center_three, center_four, num_points, k=k)
     plt.contourf(xx, yy, labels, alpha=0.5, cmap='viridis')
     
     buf = BytesIO()

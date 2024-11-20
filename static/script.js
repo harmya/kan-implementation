@@ -1,25 +1,36 @@
 // Graph container and state variables
 const graph = document.getElementById("graph");
 let currentColor = "red";
+let k = 3;
+
+const mapping = {
+  3: "three",
+  5: "five",
+  7: "seven",
+};
 
 // Initialize the first button as active
 document.querySelector(".button.red").classList.add("active");
+document.querySelector(".button.three").classList.add("active");
 
 // Array to track points
 const points = [];
 
 const fetchPlot = async () => {
-  console.log("Submitting points:", points);
+  const data = {
+    points,
+    k,
+  };
+
   const response = await fetch("/plot", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(points),
+    body: JSON.stringify(data),
   });
 
   const plot = await response.json();
-  console.log(plot);
   // Get the div with id "output"
   const outputDiv = document.getElementById("output");
 
@@ -38,6 +49,10 @@ graph.addEventListener("click", (event) => {
   const x = event.clientX - rect.left;
   let y = event.clientY - rect.top;
 
+  if (x < 5 || x > rect.width - 5 || y < 5 || y > rect.height - 5) {
+    return;
+  }
+
   // Create a new point element
   const point = document.createElement("div");
   point.className = "point";
@@ -50,16 +65,13 @@ graph.addEventListener("click", (event) => {
 
   y = rect.height - y;
   points.push({ x, y, color: currentColor });
-
-  // Log the point and the array
-  console.log(`Point added: X=${x}, Y=${y}, Color=${currentColor}`);
-  console.log("All points:", points);
 });
 
 document.querySelectorAll("button").forEach((button) => {
-  if (button.id === "submit" || button.id === "k") {
+  if (button.id === "submit") {
     return;
   }
+
   if (button.id === "clear") {
     button.addEventListener("click", () => {
       // Clear the graph
@@ -72,13 +84,25 @@ document.querySelectorAll("button").forEach((button) => {
   }
 
   button.addEventListener("click", (event) => {
+    if (button.id === "value") {
+      k = parseInt(document.getElementById("k").value);
+      document.querySelectorAll("button").forEach((btn) => {
+        if (btn.classList[1] !== mapping[k] && btn.id === "value") {
+          btn.classList.remove("active");
+        }
+      });
+      event.target.classList.add("active");
+      return;
+    }
+
     // Update current color
     currentColor = event.target.classList[1];
-    console.log(`Current color: ${currentColor}`);
 
     // Update active button styling
     document.querySelectorAll("button").forEach((btn) => {
-      btn.classList.remove("active");
+      if (btn.id !== "value" && btn.id !== "clear") {
+        btn.classList.remove("active");
+      }
     });
     event.target.classList.add("active");
   });
