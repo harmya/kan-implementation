@@ -11,7 +11,8 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding-top: 32px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 #graph {
@@ -22,12 +23,32 @@ body {
   background-color: #fff;
 }
 
+@media screen and (max-width: 600px) {
+  #graph {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border: 2px solid #000;
+    background-color: #fff;
+  }
+}
+
 #output {
   position: relative;
   width: 500px;
   height: 500px;
   border: 2px solid #000;
   background-color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  #output {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border: 2px solid #000;
+    background-color: #fff;
+  }
 }
 
 #buttons {
@@ -61,7 +82,7 @@ body {
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 14px;
-  width: 80px;
+  width: fit-content;
   font-weight: 600;
   line-height: 15px;
   padding: 8px 16px;
@@ -74,7 +95,12 @@ body {
   vertical-align: middle;
   white-space: nowrap;
 }
-
+@media screen and (max-width: 600px) {
+  .button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
 .button.red {
   background-color: red;
 }

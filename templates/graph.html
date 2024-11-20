@@ -11,33 +11,34 @@
   </head>
   <body>
     <h1>K-Nearest Neighbors</h1>
+    <hr />
     <div id="container">
       <div id="graph"></div>
       <div id="output"></div>
     </div>
-    <div id="controls">
-      <div id="buttons">
-        <div id="labels">
-          <h2>Choose the label of data to add</h2>
-          <button id="label" class="button red">Red</button>
-          <button id="label" class="button green">Green</button>
-          <button id="label" class="button blue">Blue</button>
-          <button id="label" class="button gold">Yellow</button>
-        </div>
-        <div id="k">
-          <h2>Choose the value of k</h2>
-          <button id="value" class="button three">3</button>
-          <button id="value" class="button five">5</button>
-          <button id="value" class="button seven">7</button>
-        </div>
-        <div id="reset">
-          <h2>Reset the graph</h2>
-          <button id="clear" class="button reset">Reset</button>
-        </div>
-        <div id="predict">
-          <h2>Predict</h2>
-          <button class="button" id="submit">Predict</button>
-        </div>
+
+    <hr />
+    <div id="buttons">
+      <div id="labels">
+        <h4>Choose the label of data to add</h4>
+        <button id="label" class="button red">Red</button>
+        <button id="label" class="button green">Green</button>
+        <button id="label" class="button blue">Blue</button>
+        <button id="label" class="button gold">Yellow</button>
+      </div>
+      <div id="k">
+        <h4>Choose the value of k</h4>
+        <button id="value" class="button three">3</button>
+        <button id="value" class="button five">5</button>
+        <button id="value" class="button seven">7</button>
+      </div>
+      <div id="reset">
+        <h4>Reset data</h4>
+        <button id="clear" class="button reset">Reset</button>
+      </div>
+      <div id="predict">
+        <h4>Predict Boundaries</h4>
+        <button class="button" id="submit">Predict</button>
       </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>

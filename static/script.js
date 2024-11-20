@@ -30,7 +30,7 @@ const fetchPlot = async () => {
     const outputDiv = document.getElementById("output");
 
     if (plot.img_data) {
-      outputDiv.innerHTML = `<img src="data:image/png;base64,${plot.img_data}" alt="Generated Plot" />`;
+      outputDiv.innerHTML = `<img src="data:image/png;base64,${plot.img_data}" alt="Generated Plot" style="max-width: 100%; height: auto;" />`;
     } else {
       outputDiv.innerHTML = "Failed to generate plot.";
     }
