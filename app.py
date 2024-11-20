@@ -137,8 +137,6 @@ def plot():
     buf.seek(0)
     img_data = base64.b64encode(buf.getvalue()).decode("utf-8")
     buf.close()
-
-    plt.savefig('static/plot.png')
     return jsonify({"img_data": img_data})
 
 if __name__ == "__main__":
