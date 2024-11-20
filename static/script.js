@@ -19,6 +19,10 @@ const points = [];
 
 // Function to fetch and display the plot
 const fetchPlot = async () => {
+  const outputDiv = document.getElementById("output");
+
+  outputDiv.innerHTML = `<div class="loader"></div>`;
+
   try {
     const response = await fetch("/plot", {
       method: "POST",
@@ -27,7 +31,6 @@ const fetchPlot = async () => {
     });
 
     const plot = await response.json();
-    const outputDiv = document.getElementById("output");
 
     if (plot.img_data) {
       outputDiv.innerHTML = `<img src="data:image/png;base64,${plot.img_data}" alt="Generated Plot" style="max-width: 100%; height: auto;" />`;
@@ -35,6 +38,7 @@ const fetchPlot = async () => {
       outputDiv.innerHTML = "Failed to generate plot.";
     }
   } catch (error) {
+    outputDiv.innerHTML = "An error occurred while fetching the plot.";
     console.error("Error fetching plot:", error);
   }
 };
