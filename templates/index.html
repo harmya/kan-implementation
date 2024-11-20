@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Plot</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+      img {
+        max-width: 90%;
+        height: auto;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Interactive K-NN Plot</h1>
+    <button onclick="refreshPlot()">Refresh Plot</button>
+    <div id="plot-container">
+      <img id="plot" src="" alt="Plot will appear here" />
+    </div>
+
+    <script>
+      async function refreshPlot() {
+        const response = await fetch("/plot");
+        const data = await response.json();
+        document.getElementById("plot").src =
+          "data:image/png;base64," + data.img_data;
+      }
+
+      // Load the initial plot
+      refreshPlot();
+    </script>
+  </body>
+</html>
